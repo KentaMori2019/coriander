@@ -1,3 +1,4 @@
+import 'package:coriander/book_list_page.dart';
 import 'package:coriander/main_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,14 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      home: ChangeNotifierProvider<MainModel>(
-        create: (_) => MainModel(),
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('コリアンダー'),
-          ),
-          body: Consumer<MainModel>(builder: (context, model, child){
+        title: 'Flutter Demo',
+        home: ChangeNotifierProvider<MainModel>(
+          create: (_) => MainModel(),
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text('コリアンダー'),
+            ),
+            body: Consumer<MainModel>(builder: (context, model, child) {
               return Center(
                 child: Column(
                   children: [
@@ -29,18 +30,20 @@ class MyApp extends StatelessWidget {
                     ),
                     RaisedButton(
                       child: Text('ボタン'),
-                      onPressed: (){
+                      onPressed: () {
                         //ここに動作
-                        model.changeKboyText();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => BookListPage()),
+                        );
                       },
                     ),
                   ],
                 ),
               );
-            }
+            }),
           ),
-        ),
-      )
-    );
+        ));
   }
 }
